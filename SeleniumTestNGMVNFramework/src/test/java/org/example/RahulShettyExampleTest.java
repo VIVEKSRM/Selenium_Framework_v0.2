@@ -87,6 +87,7 @@ public class RahulShettyExampleTest extends BaseClass {
     public void test1()
     {
         getDriver("https://google.com");
+        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".mb-3")));
     }
     @AfterMethod()
     public void afterMethod()
