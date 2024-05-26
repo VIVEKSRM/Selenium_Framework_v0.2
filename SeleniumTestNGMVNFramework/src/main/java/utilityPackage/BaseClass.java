@@ -17,6 +17,11 @@ public class BaseClass {
     public static WebDriver driver;
     public static Properties props;
 
+    /** Description of properties
+     * Load data from config.properties File
+     * @author Vivek Ranjan
+     *
+     */
     public static void properties() {
         props = new Properties();
         try {
@@ -28,6 +33,11 @@ public class BaseClass {
         }
     }
 
+    /** Description of browserFactory
+     * Launch the Web Browser
+     * @author Vivek Ranjan
+     *
+     */
     public static void browserFactory() {
         try {
             String browserName = props.getProperty("browser");
@@ -105,6 +115,11 @@ public class BaseClass {
         }
     }
 
+    /** Description of tearDown
+     * Quit the Web browser
+     * @author Vivek Ranjan
+     *
+     */
     public void tearDown() {
 
         if (driver != null) {
@@ -117,18 +132,38 @@ public class BaseClass {
         driver.get(props.getProperty("URL"));
     }
 
+    /** Description of navigateTO
+     *
+     * @author Vivek Ranjan
+     * @param  url
+     */
     public void navigateTO(String url){
         driver.navigate().to(url);
     }
 
+    /** Description of navigateBack
+     * Similar to Click back in Web Page
+     * @author Vivek Ranjan
+     *
+     */
     public void navigateBack(){
         driver.navigate().back();
     }
 
+    /** Description of pageRefresh
+     * Similar to Click Forward in Web Page
+     * @author Vivek Ranjan
+     *
+     */
     public void navigateForward(){
         driver.navigate().forward();
     }
 
+    /** Description of pageRefresh
+     * Similar to CLick Refresh in Web Page
+     * @author Vivek Ranjan
+     * @param
+     */
     public void pageRefresh(){
         driver.navigate().refresh();
     }
