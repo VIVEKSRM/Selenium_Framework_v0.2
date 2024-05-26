@@ -10,13 +10,22 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import utilityPackage.BaseClass;
 
 import java.time.Duration;
 import java.util.List;
 
-public class rahulShettyExample {
-    WebDriver driver;
+public class RahulShettyExampleTest extends BaseClass {
+    @BeforeMethod()
+    public void beforeMethod()
+    {
+        browserFactory();
+    }
+
+   /* WebDriver driver;
     @Test()
     public void setup()
     {
@@ -36,7 +45,6 @@ public class rahulShettyExample {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         //driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
         driver.get("https://www.rahulshettyacademy.com/client");
-
 
       //  LandingPage landingPage = new LandingPage(driver);
         String productName="ADIDAS ORIGINAL";
@@ -74,6 +82,16 @@ public class rahulShettyExample {
         Assert.assertTrue(confirmMessage.equalsIgnoreCase("THANKYOU FOR THE ORDER."));
         driver.close();
 
+    }*/
+    @Test()
+    public void test1()
+    {
+        getDriver("https://google.com");
+    }
+    @AfterMethod()
+    public void afterMethod()
+    {
+        tearDown();
     }
 
 }
