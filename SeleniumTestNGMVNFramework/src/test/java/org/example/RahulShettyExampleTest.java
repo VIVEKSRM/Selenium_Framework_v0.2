@@ -14,9 +14,13 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utilityPackage.BaseClass;
+import utilityPackage.WaitUtils;
 
 import java.time.Duration;
 import java.util.List;
+
+import static org.openqa.selenium.By.id;
+import static utilityPackage.WaitUtils.waitForElement;
 
 public class RahulShettyExampleTest extends BaseClass {
     @BeforeMethod()
@@ -88,6 +92,8 @@ public class RahulShettyExampleTest extends BaseClass {
     {
         getDriver("https://google.com");
         //wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".mb-3")));
+        WaitUtils wait=new WaitUtils();
+        waitForElement(id("userEmail"), 5);
     }
     @AfterMethod()
     public void afterMethod()
