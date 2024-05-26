@@ -11,7 +11,9 @@ import org.testng.Assert;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.Properties;
+import java.util.stream.Collectors;
 
 public class BaseClass {
     public static WebDriver driver;
@@ -25,7 +27,8 @@ public class BaseClass {
     public static void properties() {
         props = new Properties();
         try {
-            FileInputStream fileInputStream = new FileInputStream("/config.properties");
+            FileInputStream fileInputStream = new FileInputStream("config.properties");
+            //SeleniumTestNGMVNFramework/config.properties
             props.load(fileInputStream);
             fileInputStream.close();
         } catch (IOException e) {
@@ -39,19 +42,17 @@ public class BaseClass {
      *
      */
     public static void browserFactory() {
+        properties();
         try {
             String browserName = props.getProperty("browser");
             String browserVersion = props.getProperty("browserVersion");
             System.out.println("Browser Selected is : " + browserName);
 
             if (props.isEmpty()) {
-
                 if (driver != null) {
                     driver.quit();
                 }
-
                 if (browserName.equalsIgnoreCase("chrome")) {
-
                     WebDriverManager.chromedriver().browserVersion("77.0.3865.40").setup();
                     ChromeOptions options = new ChromeOptions();
                     options.addArguments("start-maximized");
@@ -64,7 +65,6 @@ public class BaseClass {
                     options.addArguments("--ignore-ssl-errors=yes");
                     options.addArguments("--ignore-certificate-errors");
                     driver = new ChromeDriver(options);
-
 
                 } else if (browserName.equalsIgnoreCase("firefox")) {
 
@@ -90,9 +90,19 @@ public class BaseClass {
                 }
 
                 if (browserName.equalsIgnoreCase("chrome")) {
+                    WebDriverManager.chromedriver().browserVersion("77.0.3865.40").setup();
+                    ChromeOptions options = new ChromeOptions();
+                    options.addArguments("start-maximized");
+                    options.addArguments("enable-automation");
+                    options.addArguments("--no-sandbox");
+                    options.addArguments("--disable-infobars");
+                    options.addArguments("--disable-dev-shm-usage");
+                    options.addArguments("--disable-browser-side-navigation");
+                    options.addArguments("--disable-gpu");
+                    options.addArguments("--ignore-ssl-errors=yes");
+                    options.addArguments("--ignore-certificate-errors");
+                    driver = new ChromeDriver(options);
 
-                    WebDriverManager.chromedriver().browserVersion(browserVersion).setup();
-                    driver = new ChromeDriver();
                 } else if (browserName.equalsIgnoreCase("firefox")) {
 
                     WebDriverManager.firefoxdriver().browserVersion(browserVersion).setup();
@@ -128,8 +138,17 @@ public class BaseClass {
         }
     }
 
-    public void getDriver(){
-        driver.get(props.getProperty("URL"));
+    /** Description of getDriver
+     *
+     * @author Vivek Ranjan
+     * @param
+     */
+    public void getDriver(String... URL){
+       boolean b = Arrays.stream(URL).count() > 0;
+        if (b)
+            driver.get(Arrays.stream(URL).map(Object::toString).collect(Collectors.joining(",")));
+        else
+            driver.get(props.getProperty("URL"));
     }
 
     /** Description of navigateTO

@@ -86,7 +86,7 @@ public class RahulShettyExampleTest extends BaseClass {
     @Test()
     public void test1()
     {
-
+        getDriver("https://google.com");
     }
     @AfterMethod()
     public void afterMethod()
