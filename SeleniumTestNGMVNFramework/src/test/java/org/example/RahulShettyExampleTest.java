@@ -92,7 +92,6 @@ public class RahulShettyExampleTest extends BaseClass {
     {
         getDriver("https://google.com");
         //wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".mb-3")));
-        WaitUtils wait=new WaitUtils();
         waitForElement(id("userEmail"), 5);
     }
     @AfterMethod()
