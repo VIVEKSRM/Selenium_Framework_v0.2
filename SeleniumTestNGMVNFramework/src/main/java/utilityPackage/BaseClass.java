@@ -11,6 +11,7 @@ import org.testng.Assert;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.Properties;
 import java.util.stream.Collectors;
@@ -120,6 +121,8 @@ public class BaseClass {
 
                 }
             }
+            driver.manage().deleteAllCookies();
+            driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Long.parseLong(props.getProperty("implicitWaitTime"))));
         }catch(Exception e){
             System.out.println("Exception captured at browserFactory method");
         }
