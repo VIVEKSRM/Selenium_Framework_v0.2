@@ -13,10 +13,12 @@ import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pom.object.loginPage;
 import utilityPackage.BaseClass;
 import utilityPackage.WaitUtils;
 
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.openqa.selenium.By.id;
@@ -90,9 +92,13 @@ public class RahulShettyExampleTest extends BaseClass {
     @Test()
     public void test1()
     {
-        getDriver("https://google.com");
+        getDriver();
+        loginPage login=new loginPage(driver);
         //wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".mb-3")));
-        waitForElement(id("userEmail"), 5);
+        login.loginToApp();
+      //  waitForElement(id("userEmail"), 5);
+
+
     }
     @AfterMethod()
     public void afterMethod()
