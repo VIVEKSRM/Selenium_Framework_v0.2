@@ -1,11 +1,14 @@
 package pom.object.setupPages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import utilityPackage.BaseClass;
 
 import java.util.Map;
+
+import static utilityPackage.WaitUtils.waitForElement;
 
 public class loginSetupPage extends BaseClass {
 
@@ -16,12 +19,10 @@ public class loginSetupPage extends BaseClass {
     }
     public boolean loginToApp(Map<String, Object> feildElementMap) {
 
-       WebElement username= (WebElement) feildElementMap.get("userEmail");
-       username.sendKeys("anshika@gmail.com");
-       WebElement userPassword= (WebElement) feildElementMap.get("userPassword");
-       userPassword.sendKeys("Iamking@000");
-       WebElement loginButton= (WebElement) feildElementMap.get("loginButton");
-       loginButton.click();
+       //WebElement username= (WebElement) feildElementMap.get("userEmail");
+       waitForElement(driver, (WebElement) feildElementMap.get("userEmail"),5).sendKeys("anshika@gmail.com");
+       waitForElement(driver, (WebElement) feildElementMap.get("userPassword"),5).sendKeys("Iamking@000");
+       waitForElement(driver, (WebElement) feildElementMap.get("loginButton"),5).click();
        return true;
     }
 }
