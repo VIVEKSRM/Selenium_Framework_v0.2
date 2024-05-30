@@ -24,19 +24,7 @@ public class WaitUtils extends BaseClass{
     public static WebElement waitForElement(WebDriver driver,WebElement element, int timeOutInSeconds) {
         WebElement ele;
         try {
-            WaitUtils WaitUtils=new WaitUtils();
-            // To use WebDriverWait(), we would have to nullify
-            // implicitlyWait().
-            // Because implicitlyWait time also set "driver.findElement()" wait
-            // time.
-            // info from:
-            // https://groups.google.com/forum/?fromgroups=#!topic/selenium-users/6VO_7IXylgY
-            //driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS); // nullify
-            // implicitlyWait()
             ele = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds)).until(ExpectedConditions.elementToBeClickable(element));
-            ///  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
-            // ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.(WaitUtils.eleLocator)(WaitUtils.toByVal(element))));
-
             return ele; // return the element
         } catch (Exception e) {
             e.printStackTrace();
@@ -92,37 +80,5 @@ public class WaitUtils extends BaseClass{
         }
         // Log.info("Waiting for Element " + element + " exited");
 
-    }
-    // return ByType of WebElement
-    public By toByVal(WebElement we) {
-        // By format = "[foundFrom] -> locator: term"
-        // see RemoteWebElement toString() implementation
-        String[] data = we.toString().split(" -> ")[1].replace("]", "").split(": ");
-        String locator = data[0];
-        String term = data[1];
-
-        switch (locator) {
-            case "xpath":
-                return By.xpath(term);
-            case "css selector":
-                return By.cssSelector(term);
-            case "id":
-                return By.id(term);
-            case "tag name":
-                return By.tagName(term);
-            case "name":
-                return By.name(term);
-            case "link text":
-                return By.linkText(term);
-            case "class name":
-                return By.className(term);
-        }
-        return (By) we;
-    }
-
-    // Return type of WebElement Locator
-    public String eleLocator(WebElement we) {
-        String[] data = we.toString().split(" -> ")[1].replace("]", "").split(": ");
-        return data[0];
     }
 }
