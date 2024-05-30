@@ -34,8 +34,8 @@ public class WaitUtils extends BaseClass{
             //driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS); // nullify
             // implicitlyWait()
             ele = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds)).until(ExpectedConditions.elementToBeClickable(element));
-          ///  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
-           // ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.(WaitUtils.eleLocator)(WaitUtils.toByVal(element))));
+            ///  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
+            // ele = wait.until(ExpectedConditions.visibilityOfElementLocated(By.(WaitUtils.eleLocator)(WaitUtils.toByVal(element))));
 
             return ele; // return the element
         } catch (Exception e) {
@@ -62,7 +62,7 @@ public class WaitUtils extends BaseClass{
     }
 
     public static void sleepTime(int seconds) {
-       // Log.info("-------  sleep for ------" + seconds + "     ----seconds---");
+        // Log.info("-------  sleep for ------" + seconds + "     ----seconds---");
 
         int sleepTime = seconds * 1000;
         try {
@@ -70,14 +70,14 @@ public class WaitUtils extends BaseClass{
 
         } catch (InterruptedException e) {
 
-          //  Log.error("Exception : " + e);
+            //  Log.error("Exception : " + e);
             Thread.currentThread().interrupt();
         }
     }
 
     public static void waitForElement(String element, String locType) {
 
-      //  Log.info("Waiting for Element " + element + " initiated");
+        //  Log.info("Waiting for Element " + element + " initiated");
         wait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(30))
                 .pollingEvery(Duration.ofMillis(1000)).withMessage("Timeout occured!")
                 .ignoring(java.util.NoSuchElementException.class);
@@ -90,7 +90,7 @@ public class WaitUtils extends BaseClass{
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath(element)));
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         }
-       // Log.info("Waiting for Element " + element + " exited");
+        // Log.info("Waiting for Element " + element + " exited");
 
     }
     // return ByType of WebElement

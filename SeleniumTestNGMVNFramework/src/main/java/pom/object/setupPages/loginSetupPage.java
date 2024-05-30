@@ -18,11 +18,9 @@ public class loginSetupPage extends BaseClass {
         PageFactory.initElements(driver, this);
     }
     public boolean loginToApp(Map<String, Object> feildElementMap) {
-
-       //WebElement username= (WebElement) feildElementMap.get("userEmail");
-       waitForElement(driver, (WebElement) feildElementMap.get("userEmail"),5).sendKeys("anshika@gmail.com");
-       waitForElement(driver, (WebElement) feildElementMap.get("userPassword"),5).sendKeys("Iamking@000");
-       waitForElement(driver, (WebElement) feildElementMap.get("loginButton"),5).click();
-       return true;
+        waitForElement(driver, (WebElement) feildElementMap.get("userEmail"),5).sendKeys("anshika@gmail.com");
+        waitForElement(driver, (WebElement) feildElementMap.get("userPassword"),5).sendKeys("Iamking@000");
+        waitForElement(driver, (WebElement) feildElementMap.get("loginButton"),5).click();
+        return true;
     }
 }

@@ -34,9 +34,9 @@ public class loginPage extends BaseClass {
         feildElementMap.put("userPassword",txtUserPassword);
         feildElementMap.put("loginButton",loginButton);
     }
-   public boolean loginToApp()
-   {
-       loginSetupPage loginSetup=new loginSetupPage(driver);
-       return loginSetup.loginToApp(feildElementMap);
-   }
+    public boolean loginToApp()
+    {
+        loginSetupPage loginSetup=new loginSetupPage(driver);
+        return loginSetup.loginToApp(feildElementMap);
+    }
 }
