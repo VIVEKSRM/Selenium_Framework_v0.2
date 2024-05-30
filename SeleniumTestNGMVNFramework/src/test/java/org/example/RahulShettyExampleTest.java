@@ -94,9 +94,7 @@ public class RahulShettyExampleTest extends BaseClass {
     {
         getDriver();
         loginPage login=new loginPage(driver);
-        //wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".mb-3")));
         login.loginToApp();
-        //  waitForElement(id("userEmail"), 5);
 
 
     }
