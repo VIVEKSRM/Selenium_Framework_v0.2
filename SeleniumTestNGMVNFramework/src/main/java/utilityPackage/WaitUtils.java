@@ -15,31 +15,20 @@ public class WaitUtils extends BaseClass{
     /**
      * Description of waitForElement
      * Explicit wait for web element
-     *
+     * @param driver
      * @param element
      * @param timeOutInSeconds
      * @author Vivek Ranjan
      */
-    public static WebElement waitForElement(WebElement element, int timeOutInSeconds) {
+
+    public static WebElement waitForElement(WebDriver driver,WebElement element, int timeOutInSeconds) {
         WebElement ele;
         try {
-            // To use WebDriverWait(), we would have to nullify
-            // implicitlyWait().
-            // Because implicitlyWait time also set "driver.findElement()" wait
-            // time.
-            // info from:
-            // https://groups.google.com/forum/?fromgroups=#!topic/selenium-users/6VO_7IXylgY
-            //driver.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS); // nullify
-            // implicitlyWait()
-
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds));
-            ele = wait.until(ExpectedConditions.presenceOfElementLocated((By) element));
-
+            ele = new WebDriverWait(driver, Duration.ofSeconds(timeOutInSeconds)).until(ExpectedConditions.elementToBeClickable(element));
             return ele; // return the element
         } catch (Exception e) {
             e.printStackTrace();
             return null;
-
         }
     }
 
@@ -61,7 +50,7 @@ public class WaitUtils extends BaseClass{
     }
 
     public static void sleepTime(int seconds) {
-       // Log.info("-------  sleep for ------" + seconds + "     ----seconds---");
+        // Log.info("-------  sleep for ------" + seconds + "     ----seconds---");
 
         int sleepTime = seconds * 1000;
         try {
@@ -69,14 +58,14 @@ public class WaitUtils extends BaseClass{
 
         } catch (InterruptedException e) {
 
-          //  Log.error("Exception : " + e);
+            //  Log.error("Exception : " + e);
             Thread.currentThread().interrupt();
         }
     }
 
     public static void waitForElement(String element, String locType) {
 
-      //  Log.info("Waiting for Element " + element + " initiated");
+        //  Log.info("Waiting for Element " + element + " initiated");
         wait = new FluentWait<WebDriver>(driver).withTimeout(Duration.ofSeconds(30))
                 .pollingEvery(Duration.ofMillis(1000)).withMessage("Timeout occured!")
                 .ignoring(java.util.NoSuchElementException.class);
@@ -89,7 +78,7 @@ public class WaitUtils extends BaseClass{
             wait.until(ExpectedConditions.elementToBeClickable(By.xpath(element)));
             driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         }
-       // Log.info("Waiting for Element " + element + " exited");
+        // Log.info("Waiting for Element " + element + " exited");
 
     }
 }

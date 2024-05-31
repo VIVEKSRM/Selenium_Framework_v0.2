@@ -147,10 +147,11 @@ public class BaseClass {
      * @param
      */
     public void getDriver(String... URL){
-       boolean b = Arrays.stream(URL).count() > 0;
-        if (b)
+        boolean b = Arrays.stream(URL).count() > 0;
+        if (b) {
             driver.get(Arrays.stream(URL).map(Object::toString).collect(Collectors.joining(",")));
-        else
+            driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
+        }else
             driver.get(props.getProperty("URL"));
     }
 
