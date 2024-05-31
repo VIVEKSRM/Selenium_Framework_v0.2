@@ -95,8 +95,6 @@ public class RahulShettyExampleTest extends BaseClass {
         getDriver();
         loginPage login=new loginPage(driver);
         login.loginToApp();
-
-
     }
     @AfterMethod()
     public void afterMethod()
