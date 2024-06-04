@@ -1,6 +1,8 @@
 package org.example;
 
 import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.Status;
 import org.testng.annotations.*;
 import pom.object.loginPage;
 import utilityPackage.BaseClass;
@@ -104,10 +106,12 @@ public class ExtendReportExampleTest extends BaseClass {
     @Test(priority=4)
     public void test3()
     {
-        extent.createTest("test3");
+       ExtentTest test= extent.createTest("test3");
         getDriver();
+        test.log(Status.PASS,"Application Opened in Browser");
         loginPage login=new loginPage(driver);
         login.loginToApp();
+        test.log(Status.PASS,"Login Completed");
     }
     @Test(priority=0)
     public void test5()
