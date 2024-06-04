@@ -3,18 +3,22 @@ package org.example;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
-import org.testng.annotations.*;
-import pom.object.loginPage;
-import utilityPackage.BaseClass;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
-import static java.lang.System.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+import pom.object.viewPages.loginPage;
+import utilityPackage.BaseClass;
+
+import static java.lang.System.getProperty;
 
 public class ExtendReportExampleTest extends BaseClass {
     ExtentReports extent;
     @BeforeTest()
     public void extendReport()
     {
-        String path= getProperty("user.dir")+"\\reports\\index.html";
+        String path= getProperty("user.dir")+"\\extentReports\\index.html";
         ExtentSparkReporter reporter=new ExtentSparkReporter(path);
         reporter.config().setReportName("Web Automation Results");
         reporter.config().setDocumentTitle("Test Results");
@@ -113,10 +117,17 @@ public class ExtendReportExampleTest extends BaseClass {
         login.loginToApp();
         test.log(Status.PASS,"Login Completed");
         test.fail("Result Donot Match");
+        test.log(Status.INFO,"test failed but proceeded as its Soft Assert");
+        test.addScreenCaptureFromBase64String(getProperty("user.dir")+"\\extentReports\\FailedSnapshot.png"," Failed Snapshot");
+        test.pass("Pass with test.pass method");
+        test.log(Status.FAIL,"Fail with status.Fail method");
+        test.warning("warnign message");
+        test.log(Status.SKIP,"Test Skipped");
     }
     @Test(priority=0)
     public void test5()
     {
+        extent.createTest("test5");
         getDriver();
         loginPage login=new loginPage(driver);
         login.loginToApp();
@@ -124,6 +135,7 @@ public class ExtendReportExampleTest extends BaseClass {
     @Test()
     public void test4()
     {
+        extent.createTest("test4");
         getDriver();
         loginPage login=new loginPage(driver);
         login.loginToApp();
@@ -131,6 +143,7 @@ public class ExtendReportExampleTest extends BaseClass {
     @Test(priority=0)
     public void test6()
     {
+        extent.createTest("test6");
         getDriver();
         loginPage login=new loginPage(driver);
         login.loginToApp();
