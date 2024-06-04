@@ -112,6 +112,7 @@ public class ExtendReportExampleTest extends BaseClass {
         loginPage login=new loginPage(driver);
         login.loginToApp();
         test.log(Status.PASS,"Login Completed");
+        test.fail("Result Donot Match");
     }
     @Test(priority=0)
     public void test5()
