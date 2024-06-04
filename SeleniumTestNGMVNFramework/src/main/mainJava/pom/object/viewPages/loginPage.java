@@ -1,4 +1,4 @@
-package pom.object;
+package pom.object.viewPages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
