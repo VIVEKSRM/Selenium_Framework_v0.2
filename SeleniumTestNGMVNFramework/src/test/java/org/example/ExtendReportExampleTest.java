@@ -1,30 +1,26 @@
 package org.example;
 
-import io.github.bonigarcia.wdm.WebDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
+import com.aventstack.extentreports.ExtentReports;
+import org.testng.annotations.*;
 import pom.object.loginPage;
 import utilityPackage.BaseClass;
-import utilityPackage.WaitUtils;
+import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import static java.lang.System.*;
 
-import java.time.Duration;
-import java.util.Arrays;
-import java.util.List;
+public class ExtendReportExampleTest extends BaseClass {
+    ExtentReports extent;
+    @BeforeTest()
+    public void extendReport()
+    {
+        String path= getProperty("user.dir")+"\\reports\\index.html";
+        ExtentSparkReporter reporter=new ExtentSparkReporter(path);
+        reporter.config().setReportName("Web Automation Results");
+        reporter.config().setDocumentTitle("Test Results");
 
-import static org.openqa.selenium.By.id;
-import static utilityPackage.WaitUtils.waitForElement;
-
-public class RahulShettyExampleTest extends BaseClass {
+        extent=new ExtentReports();
+        extent.attachReporter(reporter);
+        extent.setSystemInfo("Tester","Vivek Ranjan");
+    }
     @BeforeMethod()
     public void beforeMethod()
     {
@@ -92,6 +88,7 @@ public class RahulShettyExampleTest extends BaseClass {
     @Test(priority=-9)
     public void test1()
     {
+        extent.createTest("test1");
         getDriver();
         loginPage login=new loginPage(driver);
         login.loginToApp();
@@ -99,6 +96,7 @@ public class RahulShettyExampleTest extends BaseClass {
     @Test()
     public void test2()
     {
+        extent.createTest("test2");
         getDriver();
         loginPage login=new loginPage(driver);
         login.loginToApp();
@@ -106,6 +104,7 @@ public class RahulShettyExampleTest extends BaseClass {
     @Test(priority=4)
     public void test3()
     {
+        extent.createTest("test3");
         getDriver();
         loginPage login=new loginPage(driver);
         login.loginToApp();
@@ -135,6 +134,7 @@ public class RahulShettyExampleTest extends BaseClass {
     public void afterMethod()
     {
         tearDown();
+        extent.flush();
     }
 
 }
