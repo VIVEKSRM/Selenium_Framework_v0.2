@@ -4,6 +4,7 @@ import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
+import org.openqa.selenium.JavascriptExecutor;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
@@ -102,10 +103,39 @@ public class ExtendReportExampleTest extends BaseClass {
     @Test()
     public void test2()
     {
-        extent.createTest("test2");
+        ExtentTest test= extent.createTest("test2");
         getDriver();
         loginPage login=new loginPage(driver);
         login.loginToApp();
+//        String name="javatpoint";
+//       test.info("isNumeric : " +isNumeric("123f"));
+//        char ch=name.charAt(4);
+//        test.info("Output of the charAt() :"+ch);
+//        List<String> str=new ArrayList<String>();
+//        List<Integer> in=new ArrayList<Integer>();
+//        Collections.addAll(str,"test2", "test1");
+//        Collections.sort(str);
+//        System.out.println("post sorting:" );
+//        str.stream().forEach((i)-> {System.out.println(i);});
+//        Collections.reverse(str);
+//        System.out.println(Collections.max(str));
+//        System.out.println(Collections.min(str));
+//        System.out.println(Collections.disjoint(str,in));
+//        str.stream().forEach((i)-> {System.out.println(i);});
+
+//        String str1="testing";
+//        char[] ch1=str1.toCharArray();
+//        List lst=new ArrayList();
+//        for(char i : ch1)
+//        {
+//            lst.add(i);
+//        }
+//
+//        for(char i: ch1)
+//        {
+//            System.out.print(i);
+//        }
+
     }
     @Test(priority=4)
     public void test3()
@@ -119,6 +149,7 @@ public class ExtendReportExampleTest extends BaseClass {
         test.fail("Result Donot Match");
         test.log(Status.INFO,"test failed but proceeded as its Soft Assert");
         test.addScreenCaptureFromBase64String(getProperty("user.dir")+"\\extentReports\\FailedSnapshot.png"," Failed Snapshot");
+        test.addScreenCaptureFromPath("D:\\Automation_Framework_v0.2\\Selenium_Framework_v0.2\\SeleniumTestNGMVNFramework\\extentReports\\test.png");
         test.pass("Pass with test.pass method");
         test.log(Status.FAIL,"Fail with status.Fail method");
         test.warning("warnign message");
@@ -131,6 +162,7 @@ public class ExtendReportExampleTest extends BaseClass {
         getDriver();
         loginPage login=new loginPage(driver);
         login.loginToApp();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
     }
     @Test()
     public void test4()
